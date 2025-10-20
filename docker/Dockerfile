@@ -4,6 +4,13 @@ FROM jlesage/baseimage-gui:debian-10
 # Set the name of the application.
 ENV APP_NAME="StardewValley"
 
+# 更新软件源为archive版本
+RUN sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list && \
+    sed -i 's/security.debian.org/archive.debian.org\/debian-security/g' /etc/apt/sources.list && \
+    sed -i 's/buster\/updates/buster-security/g' /etc/apt/sources.list && \
+    echo "deb http://archive.debian.org/debian buster main" > /etc/apt/sources.list && \
+    echo "deb http://archive.debian.org/debian-security buster/updates main" >> /etc/apt/sources.list
+
 RUN apt-get update
 RUN apt-get install -y wget unzip tar strace mono-complete xterm gettext-base jq netcat procps 
 #RUN APP_ICON_URL=https://stardewcommunitywiki.com/mediawiki/images/4/48/Fiddlehead_Fern.png && \
@@ -12,7 +19,7 @@ RUN apt-get install -y wget unzip tar strace mono-complete xterm gettext-base jq
 # Game + ModLoader 1.5.6 3.18.2
 RUN mkdir -p /data/Stardew && \
     mkdir -p /data/nexus && \
-    wget https://eris.cc/Stardew_1.6.14.tar.gz -qO /data/latest.tar.gz && \
+    wget https://eris.cc/Stardew_1.6.15.tar.gz -qO /data/latest.tar.gz && \
     tar xf /data/latest.tar.gz -C /data/Stardew && \
     rm /data/latest.tar.gz 
 

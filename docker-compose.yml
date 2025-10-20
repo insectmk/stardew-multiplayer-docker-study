@@ -2,10 +2,10 @@ version: "2.2"
 
 services:
   valley:
-    image: registry.cn-hangzhou.aliyuncs.com/dockercns/stardew-multiplayer
+    image: insectmk-stardew:0.1.0
     container_name: stardew
     environment:
-      - "VNC_PASSWORD=nyanyanya"
+      - "VNC_PASSWORD=_Mk20010624"
       - "DISPLAY_HEIGHT=900"
       - "DISPLAY_WIDTH=1200"
       ## Always On Server mod
